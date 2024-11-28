@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Card from '../components/Card';
-import contracts from '/data/contracts.json';
+import dataContracts from '/data/contracts.json'; // Assuming dataContracts contains more fields
 import '/styles/Page.css';
 import '/styles/Modal.css';
 
@@ -11,12 +11,27 @@ const Modal = ({ contract, onClose }) => (
       <button className="close-modal" onClick={onClose}>X</button>
       <h3>{contract.name}</h3>
       <p>{contract.description}</p>
+      {/* Add a new line beneath the description */}
+      <br />
+      <ul>
+        {/* Display all attributes of the contract */}
+        {Object.entries(contract).map(([key, value]) => {
+          // Exclude description to avoid duplication
+          if (key !== "description") {
+            return (
+              <li key={key}><strong>{key}:</strong> {value}</li>
+            );
+          }
+          return null;
+        })}
+      </ul>
       <a href={contract.link} target="_blank" rel="noopener noreferrer">
         View Full Documentation
       </a>
     </div>
   </div>
 );
+
 
 const Contracts = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -26,7 +41,7 @@ const Contracts = () => {
   const itemsPerPage = 5;
 
   // Filter contracts based on the search term
-  const filteredContracts = contracts.filter((contract) =>
+  const filteredContracts = dataContracts.filter((contract) =>
     contract.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -58,11 +73,11 @@ const Contracts = () => {
   return (
     <div className="page-container">
       <header className="page-header">
-        <h2>Contracts</h2>
+        <h2>Data Contracts</h2>
         <div className="search-bar">
           <input
             type="text"
-            placeholder="Search Contracts..."
+            placeholder="Search Data Contracts..."
             value={searchTerm}
             onChange={(e) => {
               setSearchTerm(e.target.value);
@@ -77,7 +92,7 @@ const Contracts = () => {
             <Card
               key={index}
               title={contract.name}
-              description={contract.description}
+              description={contract.description} // Only show title and description in card
               onClick={() => handleCardClick(contract)} // Open modal on click
             />
           ))

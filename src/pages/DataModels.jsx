@@ -5,14 +5,15 @@ import datasets from '/data/datasets.json'; // Assuming you have datasets linked
 import '/styles/Page.css';
 import '/styles/Modal.css';
 
-// Modal for displaying detailed data
+// Modal for displaying dataset details
 const Modal = ({ model, onClose }) => (
   <div className="modal-overlay">
     <div className="modal-content">
       <button className="close-modal" onClick={onClose}>X</button>
       <h3>{model.title}</h3>
       <p>{model.description}</p>
-      {/* Display all other attributes */}
+      {/* Add a new line beneath the description */}
+      <br />
       <ul>
         {Object.entries(model).map(([key, value]) => (
           <li key={key}><strong>{key}:</strong> {value}</li>
@@ -21,6 +22,7 @@ const Modal = ({ model, onClose }) => (
     </div>
   </div>
 );
+
 
 const DataModels = () => {
   const [searchTerm, setSearchTerm] = useState('');

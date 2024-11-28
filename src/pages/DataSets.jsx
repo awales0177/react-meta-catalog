@@ -12,6 +12,7 @@ const Modal = ({ dataset, onClose }) => (
       <button className="close-modal" onClick={onClose}>X</button>
       <h3>{dataset.name}</h3>
       <p>{dataset.metadata.description}</p>
+      <br />
       <ul>
         {Object.entries(dataset.metadata).map(([key, value]) => {
           if (key !== "description" && key !== "transformedToModels") {

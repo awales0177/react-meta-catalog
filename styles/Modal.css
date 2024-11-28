@@ -21,20 +21,31 @@
     max-height: 80%;
     overflow-y: auto;
     position: relative;
+    text-align: left; /* Align all text to the left */
   }
   
   .modal-content h3 {
     font-size: 24px;
     margin-bottom: 10px;
+    text-align: left; /* Align title to the left */
+  }
+  
+  .modal-content p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    text-align: left; /* Align description to the left */
   }
   
   .modal-content ul {
     list-style: none;
-    padding: 0;
+    padding-left: 0;
+    margin: 0;
+    text-align: left; /* Align list items to the left */
   }
   
   .modal-content li {
     margin-bottom: 8px;
+    font-size: 1rem;
   }
   
   .close-modal {
