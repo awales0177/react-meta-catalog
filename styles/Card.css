@@ -1,33 +1,55 @@
-/* src/styles/Card.css */
 .card {
   background-color: #ffffff; /* White background */
-  color: #333; /* Dark text for contrast */
-  border: 2px solid #ccc; /* Light gray outline */
-  border-radius: 12px;
-  padding: 20px;
-  text-align: center;
-  width: 280px;
+  color: #333; /* Text color */
+  border: 2px solid #ccc; /* Light gray border */
+  border-radius: 12px; /* Rounded corners */
+  padding: 20px; /* Space inside the card */
+  text-align: left; /* Align text to the left */
+  flex: 1 1 calc(33.33% - 20px); /* Three cards per line */
+  max-width: calc(33.33% - 20px); /* Consistent size */
+  height: 300px; /* Rectangular shape */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+  overflow: hidden; /* Prevent content overflow */
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  justify-content: flex-start; /* Align content to the top */
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-  border-color: #ccc; /* Green outline on hover */
-}
-
-.card-icon {
-  font-size: 50px;
-  margin-bottom: 10px;
+  transform: translateY(-5px); /* Lift the card on hover */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
 }
 
 .card h3 {
-  font-size: 20px;
-  margin: 10px 0;
+  font-size: 22px; /* Larger title font size */
+  font-weight: bold; /* Bold for emphasis */
+  margin-bottom: 15px; /* Space below title */
+  color: #333; /* Dark text color */
 }
 
 .card p {
-  font-size: 16px;
-  line-height: 1.5;
+  font-size: 18px; /* Larger text for descriptions */
+  line-height: 1.6; /* Better readability */
+  margin: 0; /* Reset margins */
+  overflow: hidden; /* Prevent overflow */
+  text-overflow: ellipsis; /* Add "..." for overflowed text */
+  display: -webkit-box; /* Webkit-specific styling for clamping */
+  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  -webkit-box-orient: vertical; /* Ensure vertical orientation */
+}
+
+/* Responsive Styles */
+@media (max-width: 1000px) {
+  .card {
+    flex: 1 1 calc(50% - 20px); /* Two cards per line on medium screens */
+    max-width: calc(50% - 20px); /* Adjust max-width for two cards */
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    flex: 1 1 100%; /* One card per line on small screens */
+    max-width: 100%; /* Full width */
+  }
 }
