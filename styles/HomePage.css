@@ -119,3 +119,20 @@
   background-color: #f7f7f7;
   color: #000;
 }
+
+
+.svg-container {
+  text-align: center; /* Center the SVG */
+  margin-bottom: 20px; /* Add space below the SVG */
+}
+
+.homepage-svg {
+  width: 100px; /* Adjust the width of the SVG */
+  height: auto; /* Maintain the aspect ratio */
+}
+
+.homepage-title-svg {
+  width: 30px; /* Adjust size */
+  height: 30px;
+  margin-left: 10px; /* Space between the title and SVG */
+}

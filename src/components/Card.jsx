@@ -1,11 +1,13 @@
 import React from 'react';
 import '/styles/Card.css';
 
-const Card = ({ title, description, onClick }) => {
+const Card = ({ title, description, path, onClick, svg }) => {
   return (
     <div className="card" onClick={onClick}>
-      <div className="card-icon"></div>
-      <h3>{title}</h3>
+      <div className="card-header">
+        <h3>{title}</h3>
+        {svg && <img src={svg} alt={title} className="card-svg" />}
+      </div>
       <p>{description}</p>
     </div>
   );
