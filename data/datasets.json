@@ -48,9 +48,10 @@
             "status": "Active",
             "owner": "Department 2",
             "transformedToModels": [
-                "Model2",
-                "Model3",
-                "Model4"
+                "Customer Data Model",
+                "Inventory Data Model",
+                "Sales Data Model",
+                "Employee Data Model"
             ]
         }
     },

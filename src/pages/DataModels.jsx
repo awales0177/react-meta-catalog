@@ -5,20 +5,34 @@ import datasets from '/data/datasets.json'; // Assuming you have datasets linked
 import '/styles/Page.css';
 import '/styles/Modal.css';
 
-// Modal for displaying dataset details
+import '/styles/SmallCards.css';
+
+// Modal Component
 const Modal = ({ model, onClose }) => (
   <div className="modal-overlay">
     <div className="modal-content">
       <button className="close-modal" onClick={onClose}>X</button>
       <h3>{model.title}</h3>
       <p>{model.description}</p>
-      {/* Add a new line beneath the description */}
       <br />
       <ul>
-        {Object.entries(model).map(([key, value]) => (
-          <li key={key}><strong>{key}:</strong> {value}</li>
-        ))}
+        {Object.entries(model)
+          .filter(([key]) => key !== 'contracts') // Exclude contracts from basic details
+          .map(([key, value]) => (
+            <li key={key}>
+              <strong>{key}:</strong> {Array.isArray(value) ? value.join(', ') : value}
+            </li>
+          ))}
       </ul>
+      <h4>Data Contracts</h4>
+      <div className="small-card-container">
+        {model.contracts.map((contractName, index) => (
+          <div className="small-card" key={index} onClick={() => console.log(`Clicked: ${contractName}`)}>
+            <img src="/src/assets/handshake-b.svg" alt="Contract icon" />
+            <h4>{contractName}</h4>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 );
@@ -27,7 +41,7 @@ const Modal = ({ model, onClose }) => (
 const DataModels = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedModel, setSelectedModel] = useState(null); // For selected model details
+  const [selectedModel, setSelectedModel] = useState(null);
 
   const itemsPerPage = 5;
 
@@ -43,7 +57,6 @@ const DataModels = () => {
     currentPage * itemsPerPage
   );
 
-  // Count how many datasets are associated with each model
   const countAssociatedDatasets = (modelName) => {
     return datasets.filter((dataset) =>
       dataset.metadata.transformedToModels.includes(modelName)
@@ -58,12 +71,10 @@ const DataModels = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
 
-  // Show modal when card is clicked
   const handleCardClick = (model) => {
     setSelectedModel(model);
   };
 
-  // Close modal
   const handleCloseModal = () => {
     setSelectedModel(null);
   };
@@ -79,7 +90,7 @@ const DataModels = () => {
             value={searchTerm}
             onChange={(e) => {
               setSearchTerm(e.target.value);
-              setCurrentPage(1); // Reset to first page on search
+              setCurrentPage(1);
             }}
           />
         </div>
@@ -95,24 +106,32 @@ const DataModels = () => {
                   {model.description}
                   <br />
                   <br />
-                  {/* Contract icon SVG */}
-                  <img 
-                    src="/src/assets/handshake-b.svg" 
-                    alt="Contract icon" 
-                    style={{ marginLeft: '8px', verticalAlign: 'middle', width: '16px', height: '16px' }} 
+                  <img
+                    src="/src/assets/handshake-b.svg"
+                    alt="Contract icon"
+                    style={{
+                      marginLeft: '8px',
+                      verticalAlign: 'middle',
+                      width: '16px',
+                      height: '16px',
+                    }}
                   />
                   <span>{model.contracts.length} Data Contracts</span>
                   <br />
-                  {/* Dataset icon SVG */}
-                  <img 
-                    src="src/assets/data-b.svg" 
-                    alt="Dataset icon" 
-                    style={{ marginLeft: '8px', verticalAlign: 'middle', width: '16px', height: '16px' }} 
+                  <img
+                    src="src/assets/data-b.svg"
+                    alt="Dataset icon"
+                    style={{
+                      marginLeft: '8px',
+                      verticalAlign: 'middle',
+                      width: '16px',
+                      height: '16px',
+                    }}
                   />
                   <span> {countAssociatedDatasets(model.title)} Data Sets</span>
                 </>
               }
-              onClick={() => handleCardClick(model)} // Open modal on click
+              onClick={() => handleCardClick(model)}
             />
           ))
         ) : (
@@ -131,7 +150,6 @@ const DataModels = () => {
         </button>
       </footer>
 
-      {/* Render modal if a model is selected */}
       {selectedModel && <Modal model={selectedModel} onClose={handleCloseModal} />}
     </div>
   );

@@ -4,33 +4,61 @@ import dataModels from '/data/dataModels.json'; // Assuming dataModels are linke
 import datasets from '/data/datasets.json';
 import '/styles/Page.css';
 import '/styles/Modal.css';
+import '/styles/SmallCards.css'; // Import SmallCards styles
 
 // Modal for displaying dataset details
-const Modal = ({ dataset, onClose }) => (
-  <div className="modal-overlay">
-    <div className="modal-content">
-      <button className="close-modal" onClick={onClose}>X</button>
-      <h3>{dataset.name}</h3>
-      <p>{dataset.metadata.description}</p>
-      <br />
-      <ul>
-        {Object.entries(dataset.metadata).map(([key, value]) => {
-          if (key !== "description" && key !== "transformedToModels") {
-            return (
-              <li key={key}><strong>{key}:</strong> {value}</li>
-            );
-          }
-          return null;
-        })}
-      </ul>
+const Modal = ({ dataset, onClose }) => {
+  // Get all related data models from `dataModels.json`
+  const relatedDataModels = dataModels.filter((model) =>
+    dataset.metadata.transformedToModels.includes(model.title)
+  );
+
+  return (
+    <div className="modal-overlay">
+      <div className="modal-content">
+        <button className="close-modal" onClick={onClose}>X</button>
+        <h3>{dataset.name}</h3>
+        <p>{dataset.metadata.description}</p>
+        <br />
+        <ul>
+          {Object.entries(dataset.metadata).map(([key, value]) => {
+            if (key !== 'description' && key !== 'transformedToModels') {
+              return (
+                <li key={key}>
+                  <strong>{key}:</strong> {value}
+                </li>
+              );
+            }
+            return null;
+          })}
+        </ul>
+        <h4>Transformed Data Models</h4>
+        <div className="small-card-container">
+          {relatedDataModels.map((model, index) => (
+            <div
+              className="small-card"
+              key={index}
+              onClick={() => console.log(`Clicked on: ${model.title}`)}
+            >
+              <img
+                src="/src/assets/model-b.svg"
+                alt="Model icon"
+                style={{ width: '20px', height: '20px', marginBottom: '8px' }}
+              />
+              <h4>{model.title}</h4>
+              <p>{model.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const DataSets = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedDataset, setSelectedDataset] = useState(null); // For selected dataset details
+  const [selectedDataset, setSelectedDataset] = useState(null);
 
   const itemsPerPage = 5;
 
@@ -55,12 +83,10 @@ const DataSets = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
 
-  // Show modal when dataset is clicked
   const handleCardClick = (dataset) => {
     setSelectedDataset(dataset);
   };
 
-  // Close the modal
   const handleCloseModal = () => {
     setSelectedDataset(null);
   };
@@ -76,7 +102,7 @@ const DataSets = () => {
             value={searchTerm}
             onChange={(e) => {
               setSearchTerm(e.target.value);
-              setCurrentPage(1); // Reset to first page on search
+              setCurrentPage(1);
             }}
           />
         </div>
@@ -89,17 +115,17 @@ const DataSets = () => {
               title={dataset.name}
               description={
                 <>
-                  <p>{dataset.metadata.description}</p> {/* Put the description back in */}
+                  <p>{dataset.metadata.description}</p>
                   <br />
-                  <img 
-                    src="src/assets/model-b.svg" 
-                    alt="Models Icon" 
-                    style={{ marginLeft: '8px', width: '20px', height: '20px' }} // Adjust size as needed
+                  <img
+                    src="src/assets/model-b.svg"
+                    alt="Models Icon"
+                    style={{ marginLeft: '8px', width: '20px', height: '20px' }}
                   />
-                  <span>{dataset.metadata.transformedToModels.length} Data Products</span> 
+                  <span>{dataset.metadata.transformedToModels.length} Data Products</span>
                 </>
               }
-              onClick={() => handleCardClick(dataset)} // Open modal on click
+              onClick={() => handleCardClick(dataset)}
             />
           ))
         ) : (
