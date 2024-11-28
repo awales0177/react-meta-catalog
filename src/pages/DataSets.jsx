@@ -23,10 +23,6 @@ const Modal = ({ dataset, onClose }) => (
           return null;
         })}
       </ul>
-      <p><strong>Models Applied:</strong> {dataset.metadata.transformedToModels.length}</p>
-      <a href={dataset.metadata.link} target="_blank" rel="noopener noreferrer">
-        View Full Dataset
-      </a>
     </div>
   </div>
 );

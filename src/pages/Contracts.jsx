@@ -25,9 +25,6 @@ const Modal = ({ contract, onClose }) => (
           return null;
         })}
       </ul>
-      <a href={contract.link} target="_blank" rel="noopener noreferrer">
-        View Full Documentation
-      </a>
     </div>
   </div>
 );
