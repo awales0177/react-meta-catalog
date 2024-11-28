@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Card from '../components/Card';
 import dataModels from '/data/dataModels.json';
+import datasets from '/data/datasets.json'; // Assuming you have datasets linked to models
 import '/styles/Page.css';
 import '/styles/Modal.css';
 
@@ -39,6 +40,13 @@ const DataModels = () => {
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
+
+  // Count how many datasets are associated with each model
+  const countAssociatedDatasets = (modelName) => {
+    return datasets.filter((dataset) =>
+      dataset.metadata.transformedToModels.includes(modelName)
+    ).length;
+  };
 
   const handleNextPage = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
@@ -80,7 +88,28 @@ const DataModels = () => {
             <Card
               key={index}
               title={model.title}
-              description={model.description}
+              description={
+                <>
+                  {model.description}
+                  <br />
+                  <br />
+                  {/* Contract icon SVG */}
+                  <img 
+                    src="/src/assets/handshake-b.svg" 
+                    alt="Contract icon" 
+                    style={{ marginLeft: '8px', verticalAlign: 'middle', width: '16px', height: '16px' }} 
+                  />
+                  <span>{model.contracts.length} Data Contracts</span>
+                  <br />
+                  {/* Dataset icon SVG */}
+                  <img 
+                    src="src/assets/data-b.svg" 
+                    alt="Dataset icon" 
+                    style={{ marginLeft: '8px', verticalAlign: 'middle', width: '16px', height: '16px' }} 
+                  />
+                  <span> {countAssociatedDatasets(model.title)} Data Sets</span>
+                </>
+              }
               onClick={() => handleCardClick(model)} // Open modal on click
             />
           ))

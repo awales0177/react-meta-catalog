@@ -1,64 +1,33 @@
 [
     {
-      "name": "CustomerProfile",
-      "description": "Represents a user in the system, including personal details, account status, and historical activity.",
-      "owner": "John",
-      "documentation": "https://docs.aleph.occrp.org/customer-profile-model",
-      "version": "1.1",
-      "createdAt": "2024-01-15",
-      "updatedAt": "2024-11-15",
-      "expirationDate": "2025-01-15",
-      "status": "active",
-      "transformedDatasetsCount": 606,
-      "contracts": [
-        "CustomerAgreement",
-        "CustomerPolicy"
-      ]
+      "modelName": "CustomerProfile",
+      "name": "CustomerAgreement",
+      "description": "Defines the customer-related terms, including service level agreements, privacy terms, and user responsibilities.",
+      "link": "https://docs.customer.agreement.com"
     },
     {
-      "name": "ProductCatalog",
-      "description": "Represents a product in the catalog, with details about pricing, availability, and product specifications.",
-      "owner": "Joe",
-      "documentation": "https://docs.aleph.occrp.org/product-catalog-model",
-      "version": "1.0",
-      "createdAt": "2024-01-15",
-      "updatedAt": "2024-11-15",
-      "expirationDate": "2025-01-15",
-      "status": "active",
-      "transformedDatasetsCount": 5,
-      "contracts": [
-        "ProductLicense"
-      ]
+      "modelName": "CustomerProfile",
+      "name": "CustomerPolicy",
+      "description": "Policy for managing customer data, outlining data retention, processing, and privacy regulations.",
+      "link": "https://docs.customer.policy.com"
     },
     {
-      "name": "ConsumerBehavior",
-      "description": "Represents consumer details including preferences, purchase history, and interaction with products.",
-      "owner": "Rob",
-      "documentation": "https://docs.aleph.occrp.org/consumer-behavior-model",
-      "version": "1.0",
-      "createdAt": "2024-01-15",
-      "updatedAt": "2024-11-15",
-      "expirationDate": "2025-01-15",
-      "status": "active",
-      "transformedDatasetsCount": 2,
-      "contracts": [
-        "ConsumerDataProcessingAgreement"
-      ]
+      "modelName": "ProductCatalog",
+      "name": "ProductLicense",
+      "description": "Covers licensing details for products, including terms of use, product rights, and restrictions.",
+      "link": "https://docs.product.license.com"
     },
     {
-      "name": "FinancialTransaction",
-      "description": "Represents financial transactions, including payment methods, amounts, and timestamps.",
-      "owner": "None",
-      "documentation": "https://docs.aleph.occrp.org/financial-transaction-model",
-      "version": "1.0",
-      "createdAt": "2024-01-15",
-      "updatedAt": "2024-11-15",
-      "expirationDate": "2025-01-15",
-      "status": "inactive",
-      "transformedDatasetsCount": 0,
-      "contracts": [
-        "FinancialTransactionTerms"
-      ]
+      "modelName": "ConsumerBehavior",
+      "name": "ConsumerDataProcessingAgreement",
+      "description": "Agreement governing the processing of consumer data, ensuring compliance with GDPR and other privacy laws.",
+      "link": "https://docs.consumer.data.processing.agreement.com"
+    },
+    {
+      "modelName": "FinancialTransaction",
+      "name": "FinancialTransactionTerms",
+      "description": "Outlines terms related to financial transactions, including transaction fees, refunds, and payment terms.",
+      "link": "https://docs.financial.transaction.terms.com"
     }
   ]
   

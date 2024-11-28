@@ -1,31 +1,31 @@
 [
     {
-      "id": 1,
       "title": "Customer Data Model",
       "description": "A model for organizing customer information.",
       "fields": ["Name", "Email", "Phone Number", "Address"],
-      "createdBy": "John Doe"
+      "createdBy": "John Doe",
+      "contracts":["CustomerAgreement","ProductLicense"]
     },
     {
-      "id": 2,
       "title": "Sales Data Model",
       "description": "A model for tracking sales transactions.",
       "fields": ["Product", "Price", "Quantity", "Date"],
-      "createdBy": "Jane Smith"
+      "createdBy": "Jane Smith",
+      "contracts":["CustomerAgreement","ProductLicense"]
     },
     {
-      "id": 3,
       "title": "Inventory Data Model",
       "description": "A model for managing inventory items.",
       "fields": ["Item Name", "Stock Level", "Category", "Supplier"],
-      "createdBy": "Alice Johnson"
+      "createdBy": "Alice Johnson",
+      "contracts":["CustomerAgreement","ProductLicense"]
     },
     {
-      "id": 4,
       "title": "Employee Data Model",
       "description": "A model for managing employee details.",
       "fields": ["Name", "Position", "Salary", "Department"],
-      "createdBy": "Bob Brown"
+      "createdBy": "Bob Brown",
+      "contracts":["CustomerAgreement"]
     }
   ]
   

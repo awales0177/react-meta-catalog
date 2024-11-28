@@ -2,7 +2,6 @@
     {
         "name": "Dataset 1",
         "metadata": {
-            "description": "This is the description for dataset 1, containing sample data for testing purposes.",
             "date_received": "2024-11-01",
             "UUID": "001e400-0005-0000-0000-b005bc2be02",
             "link": "https://example.com/datasets/dataset-1",
@@ -21,9 +20,8 @@
             "status": "Inactive",
             "owner": "Department 1",
             "transformedToModels": [
-                "Model1",
-                "Model2",
-                "Model3"
+                "Customer Data Model",
+                "Model2"
             ]
         }
     },

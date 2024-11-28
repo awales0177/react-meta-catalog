@@ -2,59 +2,84 @@
   background-color: #ffffff;
   color: #333;
   border: 2px solid #ccc;
-  border-radius: 12px; /* Rounded corners */
-  padding: 15px; /* Padding for content spacing */
-  text-align: center; /* Center-align all text */
-  width: 400px; /* Fixed width */
-  height: 150px; /* Fixed height */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  width: 400px;
+  height: auto; /* Allow height to adjust based on content */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden; /* Prevent overflow */
   display: flex;
-  flex-direction: column; /* Stack content vertically */
-  justify-content: center; /* Align content vertically */
-  align-items: center; /* Align content horizontally */
-  position: relative; /* Necessary for absolute positioning of the SVG */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* Necessary for absolute positioning of the icons */
 }
 
 .card:hover {
-  transform: translateY(-5px); /* Lift the card on hover */
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-svg {
+  width: 20px;
+  height: 20px;
+}
+
+.icon-container {
+  position: absolute;
+  bottom: 10px; /* Position at the bottom of the card */
+  left: 10px; /* Position from the left */
+  display: flex;
+  align-items: center;
+}
+
+.card-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 5px; /* Add spacing between multiple icons, if any */
+}
+
 
 .card h3 {
   font-size: 20px; /* Title font size */
   font-weight: bold; /* Bold for emphasis */
   margin-bottom: 10px; /* Space below the title */
   color: #333; /* Dark text color */
-  white-space: nowrap; /* Prevent wrapping */
-  overflow: hidden; /* Hide overflowing text */
-  text-overflow: ellipsis; /* Add "..." for overflowing text */
+  white-space: normal; /* Allow wrapping */
+  overflow: visible; /* Don't hide overflow */
 }
 
 .card p {
   font-size: 16px; /* Description font size */
   line-height: 1.4; /* Adjusted line height */
   margin: 0; /* Reset margins */
-  overflow: hidden; /* Prevent overflow */
-  text-overflow: ellipsis; /* Add "..." for overflowed text */
-  display: -webkit-box; /* Webkit-specific styling for clamping */
-  -webkit-line-clamp: 2; /* Limit to 2 lines */
-  -webkit-box-orient: vertical; /* Ensure vertical orientation */
+  overflow: visible; /* Prevent overflow */
   text-align: center; /* Center-align the description */
   color: #798080; /* Lighter black, closer to gray */
+  white-space: normal; /* Allow wrapping */
 }
 
-/* Add this for the SVG */
 .card-svg {
   position: absolute;
   top: 10px; /* Distance from the top */
   right: 10px; /* Distance from the right */
   width: 24px; /* Adjust size */
   height: 24px;
+  vertical-align: middle; /* Align with the text */
 }
 
-
+/* For description that may overflow, this will allow wrapping text */
+.card-description {
+  white-space: normal; /* Allow text to wrap to new lines */
+  word-wrap: break-word; /* Break long words to fit in the container */
+}
 
 /* Responsive Styles */
 @media (max-width: 1000px) {

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Card from '../components/Card';
+import dataModels from '/data/dataModels.json'; // Assuming dataModels are linked to datasets
 import datasets from '/data/datasets.json';
 import '/styles/Page.css';
 import '/styles/Modal.css';
@@ -13,7 +14,7 @@ const Modal = ({ dataset, onClose }) => (
       <p>{dataset.metadata.description}</p>
       <ul>
         {Object.entries(dataset.metadata).map(([key, value]) => {
-          if (key !== "description") {
+          if (key !== "description" && key !== "transformedToModels") {
             return (
               <li key={key}><strong>{key}:</strong> {value}</li>
             );
@@ -21,7 +22,8 @@ const Modal = ({ dataset, onClose }) => (
           return null;
         })}
       </ul>
-      <a href={dataset.link} target="_blank" rel="noopener noreferrer">
+      <p><strong>Models Applied:</strong> {dataset.metadata.transformedToModels.length}</p>
+      <a href={dataset.metadata.link} target="_blank" rel="noopener noreferrer">
         View Full Dataset
       </a>
     </div>
@@ -88,7 +90,18 @@ const DataSets = () => {
             <Card
               key={index}
               title={dataset.name}
-              description={dataset.metadata.description}
+              description={
+                <>
+                  <p>{dataset.metadata.description}</p> {/* Put the description back in */}
+                  <br />
+                  <img 
+                    src="src/assets/model-b.svg" 
+                    alt="Models Icon" 
+                    style={{ marginLeft: '8px', width: '20px', height: '20px' }} // Adjust size as needed
+                  />
+                  <span>{dataset.metadata.transformedToModels.length} Data Products</span> 
+                </>
+              }
               onClick={() => handleCardClick(dataset)} // Open modal on click
             />
           ))
