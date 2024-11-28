@@ -1,3 +1,5 @@
+// src/pages/Contracts.jsx
+
 import React from 'react';
 
 const Contracts = () => {

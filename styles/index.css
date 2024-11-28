@@ -1,4 +1,13 @@
-/* src/styles/index.css */
+:root {
+  --primary-bg: #fafafa;
+  --primary-color: #6f0f0f;
+  --secondary-color: #333;
+  --hover-color: #4CAF50;
+  --card-bg-light: #ffffff;
+  --card-bg-dark: #333;
+  --transition: 0.3s ease;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -7,10 +16,38 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #fafafa;
-  color: #333;
+  background-color: var(--primary-bg);
+  color: var(--primary-color);
 }
 
-#root {
-  height: 100%;
+.card {
+  background-color: var(--card-bg-light);
+  color: var(--secondary-color);
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  width: 250px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
 }
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  border-color: var(--hover-color);
+}
+
+[data-theme='dark'] .card {
+  background-color: var(--card-bg-dark);
+  color: #f5f5f5;
+  border: 1px solid #555;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.banner, .footer {
+  width: 100%;
+  text-align: center;
+}
+
+/* Reduce additional class styles */
