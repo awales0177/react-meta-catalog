@@ -7,7 +7,7 @@ const DataModels = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
 
-  const itemsPerPage = 6;
+  const itemsPerPage = 5;
 
   // Filter data models based on the search term
   const filteredDataModels = dataModels.filter((model) =>

@@ -1,16 +1,15 @@
 .card {
-  background-color: #ffffff; /* White background */
-  color: #333; /* Text color */
-  border: 2px solid #ccc; /* Light gray border */
+  background-color: #ffffff;
+  color: #333;
+  border: 2px solid #ccc;
   border-radius: 12px; /* Rounded corners */
-  padding: 20px; /* Space inside the card */
+  padding: 15px; /* Padding for content spacing */
   text-align: left; /* Align text to the left */
-  flex: 1 1 calc(33.33% - 20px); /* Three cards per line */
-  max-width: calc(33.33% - 20px); /* Consistent size */
-  height: 300px; /* Rectangular shape */
+  width: 400px; /* Fixed width for 3 cards per row */
+  height: 150px; /* Fixed height for rectangular appearance */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
-  overflow: hidden; /* Prevent content overflow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden; /* Prevent overflow */
   display: flex;
   flex-direction: column; /* Stack content vertically */
   justify-content: flex-start; /* Align content to the top */
@@ -22,15 +21,15 @@
 }
 
 .card h3 {
-  font-size: 22px; /* Larger title font size */
+  font-size: 20px; /* Title font size */
   font-weight: bold; /* Bold for emphasis */
-  margin-bottom: 15px; /* Space below title */
+  margin-bottom: 10px; /* Space below the title */
   color: #333; /* Dark text color */
 }
 
 .card p {
-  font-size: 18px; /* Larger text for descriptions */
-  line-height: 1.6; /* Better readability */
+  font-size: 16px; /* Description font size */
+  line-height: 1.4; /* Adjusted line height */
   margin: 0; /* Reset margins */
   overflow: hidden; /* Prevent overflow */
   text-overflow: ellipsis; /* Add "..." for overflowed text */
@@ -42,14 +41,14 @@
 /* Responsive Styles */
 @media (max-width: 1000px) {
   .card {
-    flex: 1 1 calc(50% - 20px); /* Two cards per line on medium screens */
-    max-width: calc(50% - 20px); /* Adjust max-width for two cards */
+    width: 280px; /* Reduced width for medium screens */
+    height: 220px; /* Adjusted height for medium screens */
   }
 }
 
 @media (max-width: 600px) {
   .card {
-    flex: 1 1 100%; /* One card per line on small screens */
-    max-width: 100%; /* Full width */
+    width: 100%; /* Full width on small screens */
+    height: 200px; /* Adjusted height for small screens */
   }
 }

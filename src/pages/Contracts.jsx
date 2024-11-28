@@ -7,7 +7,7 @@ const Contracts = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
 
-  const itemsPerPage = 6;
+  const itemsPerPage = 5;
 
   // Filter contracts based on the search term
   const filteredContracts = contracts.filter((contract) =>
