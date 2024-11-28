@@ -33,9 +33,6 @@ const Contracts = () => {
     <div className="page-container">
       <header className="page-header">
         <h2>Contracts</h2>
-        <p className="subtitle">
-          Browse and explore contracts governing data models and processes, ensuring compliance and clear terms.
-        </p>
         <div className="search-bar">
           <input
             type="text"

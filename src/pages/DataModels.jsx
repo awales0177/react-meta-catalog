@@ -33,9 +33,6 @@ const DataModels = () => {
     <div className="page-container">
       <header className="page-header">
         <h2>Data Models</h2>
-        <p className="subtitle">
-          Explore and interact with structured models designed to organize and manage your data efficiently.
-        </p>
         <div className="search-bar">
           <input
             type="text"

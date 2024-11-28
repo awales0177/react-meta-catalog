@@ -25,6 +25,10 @@
   font-weight: bold; /* Bold for emphasis */
   margin-bottom: 10px; /* Space below the title */
   color: #333; /* Dark text color */
+  text-align: center; /* Center align the title */
+  white-space: nowrap; /* Prevent wrapping */
+  overflow: hidden; /* Hide overflowing text */
+  text-overflow: ellipsis; /* Add "..." for overflowing text */
 }
 
 .card p {

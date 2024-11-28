@@ -34,7 +34,6 @@ const DataSets = () => {
     <div className="page-container">
       <header className="page-header">
         <h2>Data Sets</h2>
-        <p className="subtitle">Discover and manage datasets with detailed metadata and associated models.</p>
         <div className="search-bar">
           <input
             type="text"
