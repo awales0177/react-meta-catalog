@@ -2,10 +2,26 @@ import React, { useState } from 'react';
 import Card from '../components/Card';
 import contracts from '/data/contracts.json';
 import '/styles/Page.css';
+import '/styles/Modal.css';
+
+// Modal for displaying contract details
+const Modal = ({ contract, onClose }) => (
+  <div className="modal-overlay">
+    <div className="modal-content">
+      <button className="close-modal" onClick={onClose}>X</button>
+      <h3>{contract.name}</h3>
+      <p>{contract.description}</p>
+      <a href={contract.link} target="_blank" rel="noopener noreferrer">
+        View Full Documentation
+      </a>
+    </div>
+  </div>
+);
 
 const Contracts = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedContract, setSelectedContract] = useState(null); // For selected contract details
 
   const itemsPerPage = 5;
 
@@ -27,6 +43,16 @@ const Contracts = () => {
 
   const handlePreviousPage = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
+
+  // Show modal when contract is clicked
+  const handleCardClick = (contract) => {
+    setSelectedContract(contract);
+  };
+
+  // Close the modal
+  const handleCloseModal = () => {
+    setSelectedContract(null);
   };
 
   return (
@@ -52,7 +78,7 @@ const Contracts = () => {
               key={index}
               title={contract.name}
               description={contract.description}
-              onClick={() => alert(`Navigating to ${contract.name}`)}
+              onClick={() => handleCardClick(contract)} // Open modal on click
             />
           ))
         ) : (
@@ -70,6 +96,9 @@ const Contracts = () => {
           Next
         </button>
       </footer>
+
+      {/* Render modal if a contract is selected */}
+      {selectedContract && <Modal contract={selectedContract} onClose={handleCloseModal} />}
     </div>
   );
 };

@@ -2,10 +2,29 @@ import React, { useState } from 'react';
 import Card from '../components/Card';
 import dataModels from '/data/dataModels.json';
 import '/styles/Page.css';
+import '/styles/Modal.css';
+
+// Modal for displaying detailed data
+const Modal = ({ model, onClose }) => (
+  <div className="modal-overlay">
+    <div className="modal-content">
+      <button className="close-modal" onClick={onClose}>X</button>
+      <h3>{model.title}</h3>
+      <p>{model.description}</p>
+      {/* Display all other attributes */}
+      <ul>
+        {Object.entries(model).map(([key, value]) => (
+          <li key={key}><strong>{key}:</strong> {value}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+);
 
 const DataModels = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedModel, setSelectedModel] = useState(null); // For selected model details
 
   const itemsPerPage = 5;
 
@@ -27,6 +46,16 @@ const DataModels = () => {
 
   const handlePreviousPage = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
+
+  // Show modal when card is clicked
+  const handleCardClick = (model) => {
+    setSelectedModel(model);
+  };
+
+  // Close modal
+  const handleCloseModal = () => {
+    setSelectedModel(null);
   };
 
   return (
@@ -52,7 +81,7 @@ const DataModels = () => {
               key={index}
               title={model.title}
               description={model.description}
-              onClick={() => alert(`Navigating to ${model.title}`)}
+              onClick={() => handleCardClick(model)} // Open modal on click
             />
           ))
         ) : (
@@ -70,6 +99,9 @@ const DataModels = () => {
           Next
         </button>
       </footer>
+
+      {/* Render modal if a model is selected */}
+      {selectedModel && <Modal model={selectedModel} onClose={handleCloseModal} />}
     </div>
   );
 };

@@ -2,10 +2,36 @@ import React, { useState } from 'react';
 import Card from '../components/Card';
 import datasets from '/data/datasets.json';
 import '/styles/Page.css';
+import '/styles/Modal.css';
+
+// Modal for displaying dataset details
+const Modal = ({ dataset, onClose }) => (
+  <div className="modal-overlay">
+    <div className="modal-content">
+      <button className="close-modal" onClick={onClose}>X</button>
+      <h3>{dataset.name}</h3>
+      <p>{dataset.metadata.description}</p>
+      <ul>
+        {Object.entries(dataset.metadata).map(([key, value]) => {
+          if (key !== "description") {
+            return (
+              <li key={key}><strong>{key}:</strong> {value}</li>
+            );
+          }
+          return null;
+        })}
+      </ul>
+      <a href={dataset.link} target="_blank" rel="noopener noreferrer">
+        View Full Dataset
+      </a>
+    </div>
+  </div>
+);
 
 const DataSets = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedDataset, setSelectedDataset] = useState(null); // For selected dataset details
 
   const itemsPerPage = 5;
 
@@ -28,6 +54,16 @@ const DataSets = () => {
 
   const handlePreviousPage = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
+
+  // Show modal when dataset is clicked
+  const handleCardClick = (dataset) => {
+    setSelectedDataset(dataset);
+  };
+
+  // Close the modal
+  const handleCloseModal = () => {
+    setSelectedDataset(null);
   };
 
   return (
@@ -53,7 +89,7 @@ const DataSets = () => {
               key={index}
               title={dataset.name}
               description={dataset.metadata.description}
-              onClick={() => alert(`Navigating to ${dataset.name}`)}
+              onClick={() => handleCardClick(dataset)} // Open modal on click
             />
           ))
         ) : (
@@ -71,6 +107,9 @@ const DataSets = () => {
           Next
         </button>
       </footer>
+
+      {/* Render modal if a dataset is selected */}
+      {selectedDataset && <Modal dataset={selectedDataset} onClose={handleCloseModal} />}
     </div>
   );
 };
